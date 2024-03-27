@@ -1,7 +1,11 @@
+/* eslint-disable react/prop-types */
+
 import { useState } from 'react'
 import './App.css'
 
 import BarChart from '../components/BarChart';
+// import DropdownFilter from '../components/DropdownFilter';
+import NavBar from '../components/NavBar';
 
 import data from '../data/data.json'
 
@@ -15,7 +19,10 @@ function App() {
   
   return (
     // add navbar that filters & returns data from dropdown with hooks 
-    <BarChart width={800} height={600} data={workingData}/>
+    <div>
+      <NavBar />
+      <BarChart width={800} height={600} data={workingData}/>
+    </div>
   )
 }
 

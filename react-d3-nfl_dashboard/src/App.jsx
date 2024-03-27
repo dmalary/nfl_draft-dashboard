@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from 'react'
+// import { useState } from 'react'
 import './App.css'
 
 import BarChart from '../components/BarChart';

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { useEffect } from "react";
 import * as d3 from 'd3';
 
@@ -34,7 +36,7 @@ const BarChart = ({ width, height, data }) => {
       .selectAll("text")
       .attr("font-size", "14px")
       // Rotate the labels to make them easier to read.
-      .attr("transform", "rotate(-45)")
+      // .attr("transform", "rotate(-45)")
       .attr("text-anchor", "end");
     
     d3.select(".y-axis")

@@ -55,8 +55,8 @@ const App = () => {
       </div>
       {/* fix chartData so previous filter remains, move dropdowns back to NavBar and get dataParams[] to update data button onClick*/}
       {/* <BarChart width={800} height={600} data={chartData}/> */}
-      <BarChart width={800} height={600} data={barData}/>
-      <PieChart data={pieData}/>
+      <BarChart width={600} height={400} data={barData}/>
+      <PieChart width={600} height={400} data={pieData}/>
     </div>
   )
 }

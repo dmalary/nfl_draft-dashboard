@@ -2,15 +2,17 @@
 
 import { useState } from 'react';
 
-const DropdownFilter = ({ filterKey, data }) => {
+const DropdownFilter = ({ filterKey, data, getDataFilter }) => {
   const [filter, setFilter] = useState('');
 
-  const handleChangeFilter = event => {
+  const handleChangeFilter = (event) => {
+    console.log(event.target.value);
     setFilter(event.target.value);
+    getDataFilter(filterKey, event.target.value);
   }
 
-  console.log('filterKey', filterKey)
-  console.log('data', data)
+  // console.log('filterKey', filterKey)
+  // console.log('data', data)
 
   return (
     <div className='rounded-2xl bg-gray-400'>
@@ -21,13 +23,9 @@ const DropdownFilter = ({ filterKey, data }) => {
         onChange={handleChangeFilter}
       >
         <option value="">-- Please Select --</option>
-        {/* map over data and create option element for each */}
         {data.map(el => ( 
-           <option key={el} value={`${filterKey}-${el}`}>{el}</option>
+           <option key={el} className={`${filterKey}-${el}`} value={`${el}`}>{el}</option>
         ))}
-        {/* <option value="name">Name</option>
-        <option value="date">Date</option>
-        <option value="category">Category</option> */}
       </select>
     </div>
   )

@@ -51,6 +51,7 @@ const BarChart = ({ width, height, data }) => {
         <g className="bars">
           {data.map((d, i) => (
             <rect
+              className={`rect-${i}`}
               key={d.key && d.key}
               width={xScale.bandwidth()}
               height={bottom - yScale(d.yearsPlayed)}

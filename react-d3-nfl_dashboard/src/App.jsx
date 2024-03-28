@@ -6,8 +6,9 @@ import { useState } from 'react'
 import './App.css'
 
 import BarChart from '../components/BarChart';
-// import NavBar from '../components/NavBar';
+import NavBar from '../components/NavBar';
 import DropdownFilter from '../components/DropdownFilter';
+import PieChart from '../components/PieChart';
 
 import data from '../data/data.json'
 
@@ -27,7 +28,10 @@ const App = () => {
   const teams = [... new Set(data.flatMap((d) => d.team))].filter(d => d != null && d !== "").sort(d3.ascending);
   const years = [... new Set(data.flatMap((d) => d.year))].filter(d => d != null).sort(d3.ascending);
   
-  const workingData = data.filter(d => d.year === 2001 && d.position === "LB" && d.position) // update with dropdown
+  const barData = data.filter(d => d.year === 2001 && d.position === "LB" && d.position) // update with dropdown
+
+  const pieData = data.filter(d => d.year === 2001 && d.position) // update with dropdown
+  console.log('pieData', pieData)
 
   const getDataFilter = (filter, value) => {
    console.log('filter', filter)
@@ -42,7 +46,7 @@ const App = () => {
   return (
     // add navbar that filters & returns data from dropdown with hooks 
     <div>
-      {/* <NavBar listData={dataParams}/> */}
+      {/* <NavBar dataParams={dataParams}/> */}
       <div>
         <DropdownFilter filterKey={filters.year} data={years} getDataFilter={getDataFilter}/>
         <DropdownFilter filterKey={filters.position} data={positions} getDataFilter={getDataFilter}/>
@@ -51,7 +55,8 @@ const App = () => {
       </div>
       {/* fix chartData so previous filter remains, move dropdowns back to NavBar and get dataParams[] to update data button onClick*/}
       {/* <BarChart width={800} height={600} data={chartData}/> */}
-      <BarChart width={800} height={600} data={workingData}/>
+      <BarChart width={800} height={600} data={barData}/>
+      <PieChart data={pieData}/>
     </div>
   )
 }

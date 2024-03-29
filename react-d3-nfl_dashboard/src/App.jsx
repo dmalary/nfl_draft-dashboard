@@ -5,46 +5,30 @@ import * as d3 from 'd3';
 import { useState } from 'react'
 import './App.css'
 
-import DropdownFilter from '../components/DropdownFilter';
-import RadioFilter from '../components/RadioFilter';
+import FilterCard from '../components/FilterCard';
+// import DropdownFilter from '../components/DropdownFilter';
+// import RadioFilter from '../components/RadioFilter';
 import ScatterChart from '../components/ScatterChart';
 
 import data from '../data/data.json'
 
-const filters = {
-  year: "year",
-  team: "team",
-  college: "college",
-  position: "position",
-  round: "round",
-  yearsPlayed: "yearsPlayed",
-  hof: "hof",
-  retired: "retired"
-}
+// const filters = {
+//   year: "year",
+//   team: "team",
+//   college: "college",
+//   position: "position",
+//   round: "round",
+//   yearsPlayed: "yearsPlayed",
+//   hof: "hof",
+//   retired: "retired"
+// }
 
 const App = () => {
-  const [chartFilter, setChartFilter] = useState([]);
   const [dataUpdate, setDataUpdate] = useState(data.filter(d => d.team === "NYG" && d.position));
-
-  const teams = [... new Set(data.flatMap((d) => d.team))].filter(d => d != null && d !== "").sort(d3.ascending);
-  // const colleges = [... new Set(data.flatMap((d) => d.college))].filter(d => d != null).sort(d3.ascending);
-
-  // const scatterData = data.filter(d => d.team === "NYG" && d.position)
-  // const scatterData = data.filter(d => d.team === "NYG" && d.position === "RB" && d.position)
-  const scatterData = data.filter(d => d.team === "NYG" && (d.position === "WR" || d.position === "TE") && d.position)
+  
+  const scatterData = data.filter(d => d.team === "BUF" && d.position === "QB" && d.position)
+  // const scatterData = data.filter(d => d.team === "NYG" && (d.position === "WR" || d.position === "TE") && d.position)
   // const scatterData = data.filter(d => (d.position === "WR" || d.position === "TE") && d.position)
-
-  const handleFilterUpdate = (index, value) => {
-    const newChartFilter = [...chartFilter];
-    console.log('newChartFilter', newChartFilter)
-    newChartFilter[index] = value;
-    setChartFilter(newChartFilter);
-
-    setDataUpdate(data.filter(d => d.team === chartFilter.team && d.position))
-
-    console.log('dataUpdate', dataUpdate)
-  };
-  console.log('chartFilter', chartFilter.team);
 
   return (
     <div className='flex'>
@@ -56,29 +40,13 @@ const App = () => {
           <p><i>data source: <a href="http://https://www.pro-football-reference.com/">Pro Football Reference</a></i></p>
           <p>description of data, charts + filters</p>
         </div>
-        <div className='flex'>
-          <div className='w-7/8 p-4'>
-            <div className='p-1'>
-              <DropdownFilter filterKey={filters.team} data={teams} handleFilterUpdate={handleFilterUpdate}/> 
-            </div>
-            {/* <div className='p-1'>
-              <DropdownFilter filterKey={filters.college} data={colleges} handleFilterUpdate={handleFilterUpdate}/>
-            </div> */}
-            <div className='p-1'>
-              <RadioFilter handleFilterUpdate={handleFilterUpdate}/> 
-            </div>
-            {/* ADD A SLIDER FOR YEARS? */}
-            {/* <div className='w-1/4 p-4'>
-              <button>Update</button>
-            </div> */}
-            {/* <div className='p-1'>
-              <ChartLegend data={scatterData}/>
-            </div> */}
-          </div>
+        <div>
+          <FilterCard data={data} />
         </div>
       </div>
       <div className='w-1/4 p-2'>
-        <ScatterChart width={800} height={600} data={dataUpdate}/>
+        {/* <ScatterChart width={800} height={600} data={scatterData}/> */}
+        <ScatterChart width={800} height={600} data={dataUpdate} />
       </div>
     </div>
   )

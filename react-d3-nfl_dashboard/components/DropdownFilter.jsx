@@ -23,6 +23,7 @@ const DropdownFilter = ({ filterKey, data, handleFilterUpdate }) => {
         onChange={handleChangeFilter}
       >
         <option value="">-- Please Select --</option>
+        <option key={`all-${filterKey}`} value={`${filterKey}`}>All {filterKey}s</option>
         {data.map(el => ( 
            <option key={el} className={`${filterKey}-${el}`} value={`${el}`}>{el}</option>
         ))}

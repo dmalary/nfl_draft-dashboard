@@ -10,9 +10,9 @@ run: npm run dev
 build: npm run build
 
 ### next: 
-- filter functionality
+- filter card functionality
 - tooltips
-- responsiveneness
+- styling & responsiveneness
 
 ### conventions
 - [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)

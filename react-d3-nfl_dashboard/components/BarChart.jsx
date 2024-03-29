@@ -12,11 +12,13 @@ const margin = {
 
 const BarChart = ({ width, height, data }) => {
 
+  const barData = data.filter(d => d.year === 2005 && d.position === "DB" && d.position) // update with dropdown
+
   const bottom = height - margin.bottom;
 
   const xScale = d3
     .scaleBand()
-    .domain(data.map((d) => d.round)) // set with dropdown (years, round)
+    .domain(barData.map((d) => d.round)) // set with dropdown (years, round)
     .range([margin.left, width - margin.right])
     .padding(.1)
 
@@ -24,14 +26,14 @@ const BarChart = ({ width, height, data }) => {
 
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(data, (d) => d.yearsPlayed)]) // set with dropdown (position, all)
+    .domain([0, d3.max(barData, (d) => d.yearsPlayed)]) // set with dropdown (position, all)
     .nice()
     .range([bottom, margin.top])
 
   const yAxis = d3.axisLeft(yScale);
 
   useEffect(() => {
-    d3.select(".x-axis")
+    d3.select(".x-axis-bar")
       .call(xAxis)
       .selectAll("text")
       .attr("font-size", "14px")
@@ -39,7 +41,7 @@ const BarChart = ({ width, height, data }) => {
       // .attr("transform", "rotate(-45)")
       .attr("text-anchor", "end");
     
-    d3.select(".y-axis")
+    d3.select(".y-axis-bar")
       .call(yAxis)
       .selectAll("text")
       .attr("font-size", "14px");
@@ -49,7 +51,7 @@ const BarChart = ({ width, height, data }) => {
     <div className="container">
       <svg className="viz" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <g className="bars">
-          {data.map((d, i) => (
+          {barData.map((d, i) => (
             <rect
               className={`rect-${i}`}
               key={d.key && d.key}
@@ -61,8 +63,8 @@ const BarChart = ({ width, height, data }) => {
             />
           ))}
         </g>
-        <g className="x-axis" transform={`translate(0,${bottom})`}></g>
-        <g className="y-axis" transform={`translate(${margin.left},0)`}></g>
+        <g className="x-axis-bar" transform={`translate(0,${bottom})`}></g>
+        <g className="y-axis-bar" transform={`translate(${margin.left},0)`}></g>
       </svg>
     </div>
   )

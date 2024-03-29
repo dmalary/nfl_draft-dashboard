@@ -1,34 +1,24 @@
 /* eslint-disable react/prop-types */
 
-import * as d3 from 'd3';
-
 import { useState } from 'react'
 import './App.css'
 
 import FilterCard from '../components/FilterCard';
-// import DropdownFilter from '../components/DropdownFilter';
-// import RadioFilter from '../components/RadioFilter';
 import ScatterChart from '../components/ScatterChart';
 
 import data from '../data/data.json'
 
-// const filters = {
-//   year: "year",
-//   team: "team",
-//   college: "college",
-//   position: "position",
-//   round: "round",
-//   yearsPlayed: "yearsPlayed",
-//   hof: "hof",
-//   retired: "retired"
-// }
-
 const App = () => {
-  const [dataUpdate, setDataUpdate] = useState(data.filter(d => d.team === "NYG" && d.position));
+  const [workingData, setWorkingData] = useState(data.filter(d => d.team === "NYG" && d.position));
   
   const scatterData = data.filter(d => d.team === "BUF" && d.position === "QB" && d.position)
   // const scatterData = data.filter(d => d.team === "NYG" && (d.position === "WR" || d.position === "TE") && d.position)
   // const scatterData = data.filter(d => (d.position === "WR" || d.position === "TE") && d.position)
+
+  const onFilterChange = (val) => {
+    console.log('val', val);
+    // setDataUpdate(with filters from e?)
+  }
 
   return (
     <div className='flex'>
@@ -41,12 +31,12 @@ const App = () => {
           <p>description of data, charts + filters</p>
         </div>
         <div>
-          <FilterCard data={data} />
+          <FilterCard data={data} onFilterChange={onFilterChange}/>
         </div>
       </div>
       <div className='w-1/4 p-2'>
-        {/* <ScatterChart width={800} height={600} data={scatterData}/> */}
-        <ScatterChart width={800} height={600} data={dataUpdate} />
+        <ScatterChart width={800} height={600} data={scatterData}/>
+        {/* <ScatterChart width={800} height={600} data={workingData} /> */}
       </div>
     </div>
   )

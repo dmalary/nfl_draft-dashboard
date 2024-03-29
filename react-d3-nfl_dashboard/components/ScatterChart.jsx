@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import * as d3 from 'd3';
 
+// import ChartLegend from '../components/ChartLegend';
+
 const margin = {
   top: 30,
   bottom: 70,
@@ -39,6 +41,8 @@ const ScatterChart = ({ width, height, data }) => {
     .scaleOrdinal(d3.schemeSet3)
     .domain(data.map((d) => d.position));
 
+  const keys = [... new Set(data.flatMap((d) => d.position))].filter(d => d != null);
+
   useEffect(() => {
     d3.select(".x-axis-scatter")
       .call(xAxis)
@@ -56,7 +60,36 @@ const ScatterChart = ({ width, height, data }) => {
 
   return (
     <div className="container">
-      <svg className="viz-scatter" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+      {/* <ChartLegend data={data}/> */}
+      <svg className="viz-scatter" width={width} height={height + height / 4} viewBox={`0 0 ${width} ${height - height / 8}`}>
+        <g className="viz-legend">
+          {/* {data.map((d, i) => { */}
+          {keys.map((d, i) => {
+            // const x = Math.min(width - 2, height - 2) / 2 - 70 + 14;
+            // const y = -height / 4 + i * 20 + 20;
+
+            const x = 20 + i * 28;
+            const y = -40
+
+            return (
+              <g key={d}>
+                <rect x={x} y={y} width={20} height={15} fill={color(d)} />
+                <text
+                  x={x}
+                  y={y}
+                  // dx={25}
+                  dy={25}
+                  fontSize={13}
+                  alignmentBaseline="hanging"
+                  fill='#fff'
+                  // textAnchor="middle"
+                > 
+                  {d}
+                </text>
+              </g>
+            );
+          })}
+        </g>
         <g className="circles">
           {data.map((d, i) => (
             d.pick !== null && d.pick !== "" &&
@@ -75,7 +108,6 @@ const ScatterChart = ({ width, height, data }) => {
         </g>
         <g className="x-axis-scatter" transform={`translate(0,${bottom})`}></g>
         <g className="y-axis-scatter" transform={`translate(${margin.left},0)`}></g>
-
       </svg>
     </div>
   )

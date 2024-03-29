@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 
-const DropdownFilter = ({ filterKey, data, getDataFilter }) => {
+const DropdownFilter = ({ filterKey, data, handleFilterUpdate }) => {
   const [filter, setFilter] = useState('');
 
-  const handleChangeFilter = (event) => {
-    console.log(event.target.value);
-    setFilter(event.target.value);
-    getDataFilter(filterKey, event.target.value);
+  const handleChangeFilter = (e) => {
+    console.log(e.target.value);
+    setFilter(e.target.value);
+    handleFilterUpdate(filterKey, e.target.value);
   }
 
   // console.log('filterKey', filterKey)

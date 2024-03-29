@@ -11,24 +11,16 @@ const margin = {
 }
 
 const ScatterChart = ({ width, height, data }) => {
-  console.log('data', data)
-
-  const scatterData = data.filter(d => d.team === "NYG" && d.position)
-
-  const years = [... new Set(data.flatMap((d) => d.year))].filter(d => d != null).sort(d3.ascending);
-  // console.log('years', years)
+  // console.log('data', data)
 
   const bottom = height - margin.bottom;
 
   const xScale = d3
-    // .scaleBand()
     .scaleLinear()
-    // .domain(data.map((d) => d.year)) // set with dropdown (years, round)
-    // .domain(years) // set with dropdown (years, round)
     .domain([1999, 2024]) // set with dropdown (years, round)
     .range([margin.left, width - margin.right])
 
-  const tickValues = d3.range(Math.ceil(2000 / 3) * 3, 2023, 3);
+  const tickValues = d3.range(Math.ceil(1999 / 3) * 3, 2024, 3);
 
   const xAxis = d3
     .axisBottom(xScale)
@@ -37,7 +29,7 @@ const ScatterChart = ({ width, height, data }) => {
 
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(scatterData, (d) => d.pick)]) // set with dropdown (position, all)
+    .domain([0, d3.max(data, (d) => d.pick)])
     .nice()
     .range([bottom, margin.top])
 
@@ -45,7 +37,7 @@ const ScatterChart = ({ width, height, data }) => {
 
   const color = d3
     .scaleOrdinal(d3.schemeSet3)
-    .domain(scatterData.map((d) => d.position));
+    .domain(data.map((d) => d.position));
 
   useEffect(() => {
     d3.select(".x-axis-scatter")
@@ -66,11 +58,7 @@ const ScatterChart = ({ width, height, data }) => {
     <div className="container">
       <svg className="viz-scatter" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <g className="circles">
-          {/* {scatterData.map((d) => (
-            console.log('xScale(d.x)', xScale(d.x)),
-            console.log('yScale(d.y)', yScale(d.y))
-          ))} */}
-          {scatterData.map((d, i) => (
+          {data.map((d, i) => (
             d.pick !== null && d.pick !== "" &&
             <circle
               key={i}
@@ -78,10 +66,8 @@ const ScatterChart = ({ width, height, data }) => {
               cx={xScale(d.year)}
               cy={yScale(d.pick)}
               opacity={1}
-              // stroke="#cb1dd1"
-              // fill="#cb1dd1"
-              stroke={color(scatterData[i].position)}
-              fill={color(scatterData[i].position)}
+              stroke={color(data[i].position)}
+              fill={color(data[i].position)}
               fillOpacity={0.2}
               strokeWidth={1}
             />
@@ -89,6 +75,7 @@ const ScatterChart = ({ width, height, data }) => {
         </g>
         <g className="x-axis-scatter" transform={`translate(0,${bottom})`}></g>
         <g className="y-axis-scatter" transform={`translate(${margin.left},0)`}></g>
+
       </svg>
     </div>
   )

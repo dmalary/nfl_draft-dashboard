@@ -13,7 +13,7 @@ const margin = {
 const ScatterChart = ({ width, height, data }) => {
   console.log('data', data)
 
-  const scatterData = data.filter(d => d.position === "TE" && d.position)
+  const scatterData = data.filter(d => d.team === "NYG" && d.position)
 
   const years = [... new Set(data.flatMap((d) => d.year))].filter(d => d != null).sort(d3.ascending);
   // console.log('years', years)
@@ -25,7 +25,7 @@ const ScatterChart = ({ width, height, data }) => {
     .scaleLinear()
     // .domain(data.map((d) => d.year)) // set with dropdown (years, round)
     // .domain(years) // set with dropdown (years, round)
-    .domain([2000, 2023]) // set with dropdown (years, round)
+    .domain([1999, 2024]) // set with dropdown (years, round)
     .range([margin.left, width - margin.right])
 
   const tickValues = d3.range(Math.ceil(2000 / 3) * 3, 2023, 3);

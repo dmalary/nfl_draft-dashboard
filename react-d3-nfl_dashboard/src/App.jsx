@@ -45,28 +45,28 @@ const App = () => {
       <div>
         <h1>Title</h1>
         <p><i>data source:</i></p>
+        <p>description of data, charts + filters</p>
       </div>
       <div>
-        <div>lorem ipsum copy</div>
+        <div className='w-1/4 p-4'>
+          <h3>Filters title</h3>
+        </div>
         <div className='flex'>
-          <div className='p-4'>
-            <DropdownFilter filterKey={filters.year} data={years} getDataFilter={getDataFilter}/>
+          <div className='w-1/4 p-4'>
+            <div className='p-4'>
+              <DropdownFilter filterKey={filters.year} data={years} getDataFilter={getDataFilter}/>
+            </div>
+            <div className='p-4'>
+              <DropdownFilter filterKey={filters.team} data={teams} getDataFilter={getDataFilter}/> 
+            </div>
+            <div className='p-4'>
+              <RadioFilter />
+            </div>
+            <div className='w-1/4 p-4'>
+              <button>Update</button>
+            </div>
           </div>
-          <div className='p-4'>
-            <DropdownFilter filterKey={filters.team} data={teams} getDataFilter={getDataFilter}/> 
-          </div>
-        </div>
-        <div className='p-4'>
-          <RadioFilter />
-        </div>
-        {/* fix chartData so previous filter remains, move dropdowns back to NavBar and get dataParams[] to update data button onClick*/}
-        <div>
-          <div className='p-4'>
-            <div>lorem ipsum copy</div>
-            <BarChart width={700} height={400} data={data}/>
-          </div>
-          <div className='p-4'>
-            <div>lorem ipsum copy</div>
+          <div className='w-1/4 p-4'>
             <ScatterChart width={800} height={600} data={data}/>
           </div>
         </div>

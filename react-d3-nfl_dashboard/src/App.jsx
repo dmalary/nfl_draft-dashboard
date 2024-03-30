@@ -9,16 +9,19 @@ import ScatterChart from '../components/ScatterChart';
 import data from '../data/data.json'
 
 const App = () => {
-  const [workingData, setWorkingData] = useState(data.filter(d => d.team === "NYG" && d.position));
+  // const [workingData, setWorkingData] = useState(data.filter(d => d.team === "NYG" && d.position));
+  const [workingData, setWorkingData] = useState(data.filter(d => d.team !== "" && d.position));
   
-  const scatterData = data.filter(d => d.team === "BUF" && d.position === "QB" && d.position)
+  const scatterData = data.filter(d => d.team !== "" && d.position)
+  // const scatterData = data.filter(d => d.team === "BUF" && d.position === "QB" && d.position)
   // const scatterData = data.filter(d => d.team === "NYG" && (d.position === "WR" || d.position === "TE") && d.position)
   // const scatterData = data.filter(d => (d.position === "WR" || d.position === "TE") && d.position)
 
   const onFilterChange = (val) => {
     console.log('val', val);
-    // setDataUpdate(with filters from e?)
+    setWorkingData(data.filter(d => d.team === val.team && d.position === val.position && d.position))
   }
+  console.log('workingData', workingData)
 
   return (
     <div className='flex'>
@@ -35,8 +38,8 @@ const App = () => {
         </div>
       </div>
       <div className='w-1/4 p-2'>
-        <ScatterChart width={800} height={600} data={scatterData}/>
-        {/* <ScatterChart width={800} height={600} data={workingData} /> */}
+        {/* <ScatterChart width={800} height={600} data={scatterData}/> */}
+        <ScatterChart width={800} height={600} data={workingData} />
       </div>
     </div>
   )

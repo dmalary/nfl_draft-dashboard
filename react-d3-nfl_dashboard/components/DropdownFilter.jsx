@@ -6,7 +6,7 @@ const DropdownFilter = ({ filterKey, data, handleFilterUpdate }) => {
   const [filter, setFilter] = useState('');
 
   const handleChangeFilter = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setFilter(e.target.value);
     handleFilterUpdate(filterKey, e.target.value);
   }

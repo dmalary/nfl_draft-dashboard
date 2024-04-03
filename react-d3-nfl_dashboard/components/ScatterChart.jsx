@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as d3 from 'd3';
 
+import Tooltip from "../components/Tooltip";
+// import { InteractData, Tooltip } from "../components/Tooltip";
 // import ChartLegend from '../components/ChartLegend';
 
 const margin = {
@@ -14,6 +16,8 @@ const margin = {
 
 const ScatterChart = ({ width, height, data }) => {
   // console.log('data', data)
+  // const [interactData, setInteractData] = useState<InteractData | null>(null);
+  const [interactData, setInteractData] = useState(null);
 
   const bottom = height - margin.bottom;
 
@@ -63,6 +67,7 @@ const ScatterChart = ({ width, height, data }) => {
       {/* <ChartLegend data={data}/> */}
       <svg className="viz-scatter" width={width} height={height + height / 4} viewBox={`0 0 ${width} ${height - height / 8}`}>
         <g className="viz-legend">
+          {/* LEGEND */}
           {/* {data.map((d, i) => { */}
           {keys.map((d, i) => {
             // const x = Math.min(width - 2, height - 2) / 2 - 70 + 14;
@@ -90,6 +95,7 @@ const ScatterChart = ({ width, height, data }) => {
             );
           })}
         </g>
+        {/* CHART */}
         <g className="circles">
           {data.map((d, i) => (
             d.pick !== null && d.pick !== "" &&
@@ -101,13 +107,37 @@ const ScatterChart = ({ width, height, data }) => {
               opacity={1}
               stroke={color(data[i].position)}
               fill={color(data[i].position)}
-              fillOpacity={0.2}
+              // fillOpacity={0.2}
               strokeWidth={1}
+              onMouseEnter={() => 
+                setInteractData({ 
+                  xPos: xScale(d.x),
+                  yPos: yScale(d.y),
+                  name: d.name,
+                })
+              }
+              onMouseLeave={() => setInteractData(null)}
             />
           ))}
         </g>
         <g className="x-axis-scatter" transform={`translate(0,${bottom})`}></g>
         <g className="y-axis-scatter" transform={`translate(${margin.left},0)`}></g>
+
+        {/* TOOLTIP */}
+        <div
+          style={{
+            width: width - margin.right - margin.left,
+            height: height - margin.top - margin.bottom,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            pointerEvents: "none",
+            marginLeft: margin.left,
+            marginTop: margin.top,
+          }}
+        >
+          <Tooltip interactData={interactData} />
+        </div>
       </svg>
     </div>
   )

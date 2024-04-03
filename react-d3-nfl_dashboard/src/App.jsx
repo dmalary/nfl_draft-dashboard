@@ -9,14 +9,8 @@ import ScatterChart from '../components/ScatterChart';
 import data from '../data/data.json'
 
 const App = () => {
-  // const [workingData, setWorkingData] = useState(data.filter(d => d.team === "NYG" && d.position));
   const [workingData, setWorkingData] = useState(data.filter(d => d.team !== "" && d.position));
   
-  const scatterData = data.filter(d => d.team !== "" && d.position)
-  // const scatterData = data.filter(d => d.team === "BUF" && d.position === "QB" && d.position)
-  // const scatterData = data.filter(d => d.team === "NYG" && (d.position === "WR" || d.position === "TE") && d.position)
-  // const scatterData = data.filter(d => (d.position === "WR" || d.position === "TE") && d.position)
-
   const onFilterChange = (val) => {
     console.log('val', val);
     setWorkingData(data.filter(d => d.team === val.team && d.position === val.position && d.position))
@@ -26,12 +20,14 @@ const App = () => {
   return (
     <div className='flex'>
       <div className='w-1/3'>
-        <div className=''>
-          <h1>Title</h1>
+        <div className='text-left'>
+          <h1>NFL Draft Positional History</h1>
         </div>
-        <div className=' p-2'>
+        <div className='text-left p-2'>
           <p><i>data source: <a href="http://https://www.pro-football-reference.com/">Pro Football Reference</a></i></p>
-          <p>description of data, charts + filters</p>
+          <p>data scraped, and built as json. contains all draft picks from 2000-2023</p>
+          <p>scatter plot, depicts: x-axis years; y-axis player pick # in the draft</p>
+          <p>filters include: teams, player positions</p>
         </div>
         <div>
           <FilterCard data={data} onFilterChange={onFilterChange}/>

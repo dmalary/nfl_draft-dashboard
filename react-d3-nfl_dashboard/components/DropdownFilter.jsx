@@ -15,7 +15,7 @@ const DropdownFilter = ({ filterKey, data, handleFilterUpdate }) => {
   // console.log('data', data)
 
   return (
-    <div className='rounded-2xl bg-gray-400'>
+    <div className='rounded-2xl bg-gray-400 text-left'>
       <label htmlFor="filter">{filterKey}: </label>
       <select
         name="filter"

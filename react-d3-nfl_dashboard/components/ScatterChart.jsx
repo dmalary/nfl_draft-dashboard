@@ -98,6 +98,7 @@ const ScatterChart = ({ width, height, data }) => {
         {/* CHART */}
         <g className="circles">
           {data.map((d, i) => (
+            // console.log('d', d),
             d.pick !== null && d.pick !== "" &&
             <circle
               key={i}
@@ -111,9 +112,9 @@ const ScatterChart = ({ width, height, data }) => {
               strokeWidth={1}
               onMouseEnter={() => 
                 setInteractData({ 
-                  xPos: xScale(d.x),
-                  yPos: yScale(d.y),
-                  name: d.name,
+                  xPos: xScale(d.year),
+                  yPos: yScale(d.pick),
+                  name: d.playerName,
                 })
               }
               onMouseLeave={() => setInteractData(null)}

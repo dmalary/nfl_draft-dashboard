@@ -10,9 +10,9 @@ run: npm run dev
 build: npm run build
 
 ### next: 
-- filter card functionality
-- tooltips
+- tooltips + hover
 - styling & responsiveneness
+- filter card logic
 
 ### conventions
 - [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)

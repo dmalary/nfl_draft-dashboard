@@ -69,12 +69,11 @@ const FilterCard = ({ data, onFilterChange }) => {
   }
 
   return (
-    <div className='w-7/8 p-4'>
+    <div className='p-4 text-left'>
       <div className='p-1'>
         <DropdownFilter 
           filterKey={filters.team} 
           data={teams} 
-          // handleFilterUpdate={handleTeamUpdate}
           handleFilterUpdate={handleTeamUpdate}
       /> 
       </div>
@@ -82,17 +81,16 @@ const FilterCard = ({ data, onFilterChange }) => {
         <DropdownFilter 
           filterKey={filters.position} 
           data={positions} 
-          // handleFilterUpdate={handlePositionUpdate}
           handleFilterUpdate={handlePositionUpdate}
       /> 
       </div>
-      <div className='p-1'>
+      {/* <div className='p-1'>
         <DropdownFilter 
           filterKey={filters.college} 
           data={colleges} 
           // handleFilterUpdate={handleFilterUpdate}
       />
-      </div>
+      </div> */}
       {/* <div className='p-1'>
         <RadioFilter handleFilterUpdate={handleFilterUpdate}/> // for HOF?
       </div> */}
@@ -101,7 +99,6 @@ const FilterCard = ({ data, onFilterChange }) => {
         <button>Update</button>
       </div> */}
       <div className='p-2'>
-        {/* <button value="form-btn" onClick={handleFormSubmit(dataUpdate)}>update</button> */}
         <button value="form-btn" onClick={handleFormSubmit}>update</button>
       </div>
     </div>    

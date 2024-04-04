@@ -8,8 +8,8 @@ import Tooltip from "../components/Tooltip";
 // import ChartLegend from '../components/ChartLegend';
 
 const margin = {
-  top: 30,
-  bottom: 70,
+  top: 20,
+  bottom: 20,
   left: 50,
   right: 25,
 }
@@ -18,6 +18,8 @@ const ScatterChart = ({ width, height, data }) => {
   // console.log('data', data)
   // const [interactData, setInteractData] = useState<InteractData | null>(null);
   const [interactData, setInteractData] = useState(null);
+
+  const formatYear = d3.utcFormat("%Y");
 
   const bottom = height - margin.bottom;
 
@@ -52,9 +54,7 @@ const ScatterChart = ({ width, height, data }) => {
       .call(xAxis)
       .selectAll("text")
       .attr("font-size", "13px")
-      // Rotate the labels to make them easier to read.
-      // .attr("transform", "rotate(-45)")
-      .attr("text-anchor", "end");
+      .attr("text-anchor", "middle");
     
     d3.select(".y-axis-scatter")
       .call(yAxis)
@@ -84,7 +84,7 @@ const ScatterChart = ({ width, height, data }) => {
                   y={y}
                   // dx={25}
                   dy={25}
-                  fontSize={13}
+                  fontSize={12}
                   alignmentBaseline="hanging"
                   fill='#fff'
                   // textAnchor="middle"

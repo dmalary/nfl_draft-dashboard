@@ -30,7 +30,6 @@ const App = () => {
           <p className='pb-3 text-sm'><i>Data source: <a href="http://https://www.pro-football-reference.com/">Pro Football Reference</a></i></p>
           <p className='pb-3 text-sm'><i>Scraping code: <a href="https://github.com/dmalary/nfl_value/blob/main/scrape-draft_history_alt.js">GitHub</a></i></p>
           <p className='pb-3 text-sm'><i>App code: <a href="https://github.com/dmalary/nfl_draft-dashboard">GitHub</a></i></p>
-          {/* <p>data scraped, and built as json. contains all draft picks from 2000-2023</p> */}
           <div className='p-4'><hr /></div>
           <p className='pb-2'>This scatter plot depicts all NFL draft picks, from 2000-2023.</p>
           <p className='pb-2'>The x-axis represents years, and the y-axis the number at which a player was picked in the draft (eg 1st pick, 12th pick, etc).</p>

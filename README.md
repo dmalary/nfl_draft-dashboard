@@ -11,9 +11,15 @@ build: npm run build
 
 ### next: 
 - styling & responsiveneness
-- tooltips + hover
+- tooltips
 - filter card logic
 - deploy
+
+### article callouts
+- balance btw d3 + react
+- color scale
+- filter logic
+- scraping (the booleans?)
 
 ### Refs
 - react + d3

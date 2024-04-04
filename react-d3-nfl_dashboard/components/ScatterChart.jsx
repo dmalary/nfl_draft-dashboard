@@ -42,7 +42,7 @@ const ScatterChart = ({ width, height, data }) => {
   const yAxis = d3.axisLeft(yScale);
 
   const color = d3
-    .scaleOrdinal(d3.schemeSet3)
+    .scaleOrdinal(["#58b5e1", "#245a62", "#73eca3", "#333a9e", "#ff98cc", "#c02a85", "#1fa562", "#c9dd87", "#6a10a6", "#8fec2f", "#891c1a", "#da9f63", "#096013", "#f87945", "#5d3e47", "#ec102f", "#869764", "#7d9af7", "#ae73fb", "#edcbde", "#d62df6", "#f4d403", "#85540d"])
     .domain(data.map((d) => d.position));
 
   const keys = [... new Set(data.flatMap((d) => d.position))].filter(d => d != null);

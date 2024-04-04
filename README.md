@@ -13,6 +13,18 @@ build: npm run build
 - tooltips + hover
 - styling & responsiveneness
 - filter card logic
+- deploy
+
+### Refs
+- react + d3
+  - https://www.sitepoint.com/d3-js-react-interactive-data-visualizations/#realworldexampleworldpopulationdashboard
+  - https://www.react-graph-gallery.com/scatter-plot
+- react
+  - https://www.freecodecamp.org/news/pass-data-between-components-in-react/
+- color:
+  - https://medium.com/@Elijah_Meeks/color-advice-for-data-visualization-with-d3-js-33b5adc41c90
+  - http://vrl.cs.brown.edu/color
+
 
 ### conventions
 - [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)

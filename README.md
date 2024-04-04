@@ -3,17 +3,18 @@
 react + d3 dashboard
 
 Display [NFL data](http://https://www.pro-football-reference.com/) onto a mini dashboard
+App link: [Draft dashboard](https://dmalary.github.io/nfl_draft-dashboard/)
 
-### run commands
-install: npm i got-scraping crawlee.
+### commands
+instll: npm i
 run: npm run dev
 build: npm run build
+deploy: npm run deploy
 
 ### next: 
 - filter card logic
 - tooltips
 - styling & responsiveneness
-- deploy
 
 ### article callouts
 - balance btw d3 + react

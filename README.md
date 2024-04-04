@@ -3,6 +3,7 @@
 react + d3 dashboard
 
 Display [NFL data](http://https://www.pro-football-reference.com/) onto a mini dashboard
+
 App link: [Draft dashboard](https://dmalary.github.io/nfl_draft-dashboard/)
 
 ### commands

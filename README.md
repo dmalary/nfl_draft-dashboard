@@ -10,8 +10,8 @@ run: npm run dev
 build: npm run build
 
 ### next: 
-- tooltips + hover
 - styling & responsiveneness
+- tooltips + hover
 - filter card logic
 - deploy
 

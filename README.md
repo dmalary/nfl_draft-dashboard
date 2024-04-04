@@ -10,9 +10,9 @@ run: npm run dev
 build: npm run build
 
 ### next: 
-- styling & responsiveneness
-- tooltips
 - filter card logic
+- tooltips
+- styling & responsiveneness
 - deploy
 
 ### article callouts
@@ -20,6 +20,7 @@ build: npm run build
 - color scale
 - filter logic
 - scraping (the booleans?)
+- small deploy tweaks
 
 ### Refs
 - react + d3

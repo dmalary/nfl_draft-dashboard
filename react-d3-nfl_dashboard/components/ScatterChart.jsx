@@ -19,8 +19,6 @@ const ScatterChart = ({ width, height, data }) => {
   // const [interactData, setInteractData] = useState<InteractData | null>(null);
   const [interactData, setInteractData] = useState(null);
 
-  const formatYear = d3.utcFormat("%Y");
-
   const bottom = height - margin.bottom;
 
   const xScale = d3
@@ -33,6 +31,7 @@ const ScatterChart = ({ width, height, data }) => {
   const xAxis = d3
     .axisBottom(xScale)
     .tickValues(tickValues)
+    .tickFormat(year => d3.timeFormat('%Y')(new Date(year, 0, 1)));
     // .tickSizeOuter(0);
 
   const yScale = d3

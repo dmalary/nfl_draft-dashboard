@@ -18,54 +18,32 @@ const filters = {
 
 const FilterCard = ({ data, onFilterChange }) => {
   // const [dataUpdate, setDataUpdate] = useState(data.filter(d => d.team === "NYG" && d.position));
-  const [dataUpdate, setDataUpdate] = useState(({
+  const [dataUpdate, setDataUpdate] = useState({
     team: 'all',
     position: 'all',
-  }));
-  const [teamDropDown, setTeamDropDown] = useState('all');
-  const [positionDropDown, setPositionDropDown] = useState('all');
+  });
+  const [teamValue, setTeamValue] = useState([filters.team, 'all']);
+  const [positionValue, setPositionValue] = useState([filters.position, 'all']);
+  // console.log('teamValue', teamValue)
+  // console.log('positionValue', positionValue)
 
   const teams = [... new Set(data.flatMap((d) => d.team))].filter(d => d != null && d !== "").sort(d3.ascending);
   const positions = [... new Set(data.flatMap((d) => d.position))].filter(d => d != null && d !== "").sort(d3.ascending);
-  const colleges = [... new Set(data.flatMap((d) => d.college))].filter(d => d != null).sort(d3.ascending);
+  // const colleges = [... new Set(data.flatMap((d) => d.college))].filter(d => d != null).sort(d3.ascending);
 
-  const handleTeamUpdate = (index, value) => {    
-    setTeamDropDown(value);
+  const handleDropDownUpdate = (key, value) => {
+    // console.log('key', key)
+    // console.log('value', value)
 
-        // setDataUpdate(data.filter(d => d.team === teamDropDown && d.position))
-    // setDataUpdate([...dataUpdate, dataUpdate.team = value])
-    // setDataUpdate({team: value})
-    // console.log('dataUpdate', dataUpdate)
-  };
-  // console.log('teamDropDown', teamDropDown)
-  
-  const handlePositionUpdate = (index, value) => {   
-    setPositionDropDown(value);
-    // setDataUpdate(data.filter(d => d.team === positionDropDown && d.position))
-    
-    // setDataUpdate({position: value})
-    // console.log('dataUpdate', dataUpdate)
-  };
-  // console.log('positionDropDown', positionDropDown)
+    key === filters.team ? setTeamValue([key, value]) : setPositionValue([key, value]);
+  }
 
-  const handleFormSubmit = (e) => {
-    // onFilterChange(e.target.value)
-    // console.log('dataUpdate', dataUpdate)
-    setDataUpdate({
-      team: teamDropDown,
-      position: positionDropDown,
-    })
+  const handleFormSubmit = () => {
+    setDataUpdate([teamValue, positionValue])
+    console.log('dataUpdate', dataUpdate)
 
+    // console.log('(e.target.value)', (e.target.value))
     onFilterChange(dataUpdate)
-
-    // setDataUpdate(data.filter(d => d.team === teamDropDown && d.position))
-    // setDataUpdate([...dataUpdate, dataUpdate.team = value])
-    // setDataUpdate({team: value})
-    // setDataUpdate(prevValues => {
-    //   const updatedValues = [...prevValues];
-    //   updatedValues[index] = newValue;
-    //   return updatedValues;
-    // });
   }
 
   return (
@@ -74,14 +52,14 @@ const FilterCard = ({ data, onFilterChange }) => {
         <DropdownFilter 
           filterKey={filters.team} 
           data={teams} 
-          handleFilterUpdate={handleTeamUpdate}
+          handleFilterUpdate={handleDropDownUpdate}
       /> 
       </div>
       <div className='p-1'>
         <DropdownFilter 
           filterKey={filters.position} 
           data={positions} 
-          handleFilterUpdate={handlePositionUpdate}
+          handleFilterUpdate={handleDropDownUpdate}
       /> 
       </div>
       {/* <div className='p-1'>
@@ -98,7 +76,7 @@ const FilterCard = ({ data, onFilterChange }) => {
       {/* <div className='w-1/4 p-4'>
         <button>Update</button>
       </div> */}
-      <div className='p-2'>
+      <div className='pt-2'>
         <button value="form-btn" onClick={handleFormSubmit}>update</button>
       </div>
     </div>    

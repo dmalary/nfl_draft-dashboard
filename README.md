@@ -13,7 +13,6 @@ build: npm run build
 deploy: npm run deploy
 
 ### next: 
-- filter card logic
 - tooltips
 - styling & responsiveneness
 
@@ -23,6 +22,7 @@ deploy: npm run deploy
 - filter logic
 - scraping (the booleans?)
 - small deploy tweaks
+- things to work on: smoothing out data transitions, updating tooltip logic to Delaunay dot triangulation
 
 ### Refs
 - react + d3

@@ -12,8 +12,6 @@ const App = () => {
   const [workingData, setWorkingData] = useState(data.filter(d => d.team !== "" && d.position));
   
   const onFilterChange = (val) => {
-    console.log('val', val);
-
     const newData = data.filter(d => {
       return (val.team === 'all' || d.team === val.team) && 
              (val.position === 'all' || d.position === val.position);

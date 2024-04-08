@@ -22,7 +22,7 @@ article order: scrape/clean, chart (+voronoi), deploy
 - filter logic
 - scraping (the booleans?)
 - small deploy tweaks
-- things to work on: smoothing out data transitions using join pattern
+- things to work on: smoothing out data transitions using join pattern, better responsiveness, more interactivity (dropdowns)
 
 ### Refs
 - react + d3

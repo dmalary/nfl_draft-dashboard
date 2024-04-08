@@ -24,8 +24,11 @@ const FilterCard = ({ data, onFilterChange }) => {
   const positions = [... new Set(data.flatMap((d) => d.position))].filter(d => d != null && d !== "").sort(d3.ascending);
   // const colleges = [... new Set(data.flatMap((d) => d.college))].filter(d => d != null).sort(d3.ascending);
 
-  const handleDropDownUpdate = (filter, value) => {
+  const handleTeamDropDown = (filter, value) => {
     setTeamValue(prevState => ({ ...prevState, [filter]: value === 'team' ? 'all' : value }));
+  };
+
+  const handlePositionDropDown = (filter, value) => {
     setPositionValue(prevState => ({ ...prevState, [filter]: value === 'position' ? 'all' : value}));
   };
   
@@ -41,14 +44,14 @@ const FilterCard = ({ data, onFilterChange }) => {
         <DropdownFilter 
           filterKey={filters.team} 
           data={teams} 
-          handleFilterUpdate={handleDropDownUpdate}
+          handleFilterUpdate={handleTeamDropDown}
       /> 
       </div>
       <div className='p-1'>
         <DropdownFilter 
           filterKey={filters.position} 
           data={positions} 
-          handleFilterUpdate={handleDropDownUpdate}
+          handleFilterUpdate={handlePositionDropDown}
       /> 
       </div>
       {/* <div className='p-1'>

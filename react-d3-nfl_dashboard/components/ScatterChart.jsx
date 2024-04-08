@@ -142,12 +142,26 @@ const ScatterChart = ({ width, height, data }) => {
               opacity={0.1}
               onMouseOver={() => handleMouseOver(data[i])}
               onMouseOut={handleMouseOut}
+              // onMouseOver={() => {
+              //   handleMouseOver(data[i]);
+              //   d3.select(".tooltip")
+              //     .transition()
+              //     .duration(300) // Adjust the duration as needed
+              //     .style("opacity", 1);
+              // }}
+              // onMouseOut={() => {
+              //   setInteractData(null)
+              //   d3.select(".tooltip")
+              //     .transition()
+              //     .duration(300) // Adjust the duration as needed
+              //     .style("opacity", 0);
+              // }}
             />
           ))}
         </g>
         {/* TOOLTIP */}
         { interactData && 
-          <g>
+          <g className="tooltip">
             <rect
               width={200}
               height={60}

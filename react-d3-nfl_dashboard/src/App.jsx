@@ -13,9 +13,14 @@ const App = () => {
   
   const onFilterChange = (val) => {
     console.log('val', val);
-    setWorkingData(data.filter(d => d.team === val.team && d.position === val.position && d.position))
+
+    const newData = data.filter(d => {
+      return (val.team === 'all' || d.team === val.team) && 
+             (val.position === 'all' || d.position === val.position);
+    });
+
+    setWorkingData(newData);
   }
-  console.log('workingData', workingData)
 
   return (
     <div className='grid sm:grid-cols-3 gap-3 md:grid-cols-3 gap-3'>

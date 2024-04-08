@@ -24,6 +24,7 @@ const App = () => {
     <div className='grid sm:grid-cols-3 gap-3 md:grid-cols-3 gap-3'>
       <div className="sm:hidden">
         <p>This site is best experienced on larger screens.</p>
+        <p><i>(But you can tilt your phone and zoom out)</i></p>
       </div>
       <div className='hidden sm:block p-6 main-card rounded-lg'>
         <div className='text-left'>

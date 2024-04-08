@@ -12,7 +12,7 @@ const DropdownFilter = ({ filterKey, data, handleFilterUpdate }) => {
 
   return (
     <div className='rounded-2xl text-left'>
-      <label htmlFor="filter">{filterKey}: </label>
+      <label htmlFor="filter" style={{ textTransform: 'capitalize' }}><b>{filterKey}:</b> </label>
       <select
         name="filter"
         value={filter}

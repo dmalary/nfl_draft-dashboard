@@ -37,39 +37,35 @@ const FilterCard = ({ data, onFilterChange }) => {
     onFilterChange(combinedValues);
   };
   
-
   return (
-    <div className='p-4 text-left'>
-      <div className='p-1'>
+    <div className='text-left'>
+      <div className='dropdowns'>
         <DropdownFilter 
           filterKey={filters.team} 
           data={teams} 
           handleFilterUpdate={handleTeamDropDown}
       /> 
       </div>
-      <div className='p-1'>
+      <div className='dropdowns'>
         <DropdownFilter 
           filterKey={filters.position} 
           data={positions} 
           handleFilterUpdate={handlePositionDropDown}
       /> 
       </div>
-      {/* <div className='p-1'>
+      {/* <div className='dropdowns'>
         <DropdownFilter 
           filterKey={filters.college} 
           data={colleges} 
           // handleFilterUpdate={handleFilterUpdate}
       />
       </div> */}
-      {/* <div className='p-1'>
+      {/* <div className=''>
         <RadioFilter handleFilterUpdate={handleFilterUpdate}/> // for HOF?
       </div> */}
       {/* ADD A SLIDER FOR YEARS? */}
-      {/* <div className='w-1/4 p-4'>
-        <button>Update</button>
-      </div> */}
-      <div className='pt-2'>
-        <button value="form-btn" onClick={handleFormSubmit}>update</button>
+      <div className='dropdown-btn'>
+        <button value="form-btn" onClick={handleFormSubmit}>Update</button>
       </div>
     </div>    
   )

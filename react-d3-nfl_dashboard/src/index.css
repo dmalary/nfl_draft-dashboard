@@ -79,3 +79,11 @@ button:focus-visible {
   color: #000;
   text-align: left;
 }
+
+.dropdowns {
+  margin-top: 6px;
+}
+.dropdown-btn {
+  margin-top: 10px;
+}
+

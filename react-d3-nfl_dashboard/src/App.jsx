@@ -38,7 +38,7 @@ const App = () => {
           <p className='pb-2'>The x-axis represents years, and the y-axis the number at which a player was picked in the draft (eg 1st pick, 12th pick, etc).</p>
           <p className='pb-2'>The chart filters below include: teams, player positions.</p>
         </div>
-        <div className='pt-5'>
+        <div className='pt-5 pb-5 pb-4'>
           <FilterCard data={data} onFilterChange={onFilterChange}/>
         </div>
       </div>

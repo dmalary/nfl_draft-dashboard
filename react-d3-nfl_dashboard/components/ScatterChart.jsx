@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import * as d3 from 'd3';
 import { Delaunay } from "d3";
 
-import Tooltip from "../components/Tooltip";
+// import Tooltip from "../components/Tooltip";
 // import ChartLegend from '../components/ChartLegend';
 
 const margin = {
@@ -17,7 +17,6 @@ const margin = {
 const ScatterChart = ({ width, height, data }) => {
   // console.log('data', data)
   const [interactData, setInteractData] = useState(null);
-  const [hoveredItem, setHoveredItem] = useState(null);
 
   const bottom = height - margin.bottom;
 
@@ -70,6 +69,19 @@ const ScatterChart = ({ width, height, data }) => {
     return delaunay.voronoi([0, 0, width, height]);
   }, [delaunay, width, height]);
 
+  const handleMouseOver = (d) => {
+    setInteractData({ 
+      xPos: xScale(d.year),
+      yPos: yScale(d.pick),
+      name: d.playerName,
+      team: d.team,
+    })
+  }
+
+  const handleMouseOut = () => {
+    setInteractData(null)
+  }
+
   return (
     <div className="container">
       {/* <ChartLegend data={data}/> */}
@@ -102,8 +114,7 @@ const ScatterChart = ({ width, height, data }) => {
         {/* CHART */}
         <g className="circles">
           {data.map((d, i) => (
-            // console.log('d', d),
-            d.pick !== null && d.pick !== "" &&
+          (d.pick !== null && d.pick !== "") &&
             <circle
               key={i}
               r={2}
@@ -112,53 +123,52 @@ const ScatterChart = ({ width, height, data }) => {
               opacity={1}
               stroke={color(data[i].position)}
               fill={color(data[i].position)}
-              // fillOpacity={0.2}
               strokeWidth={1}
-              // onMouseEnter={() => 
-              //   setInteractData({ 
-              //     xPos: xScale(d.year),
-              //     yPos: yScale(d.pick),
-              //     name: d.playerName,
-              //   })
-              // }
-              // onMouseLeave={() => setInteractData(null)}
-            />
+              // fillOpacity={0.2}
+            /> 
           ))}
         </g>
         <g className="x-axis-scatter" transform={`translate(0,${bottom})`}></g>
         <g className="y-axis-scatter" transform={`translate(${margin.left},0)`}></g>
 
-        {/* TOOLTIP 1 */}
-        {/* <div
-          style={{
-            width: width - margin.right - margin.left,
-            height: height - margin.top - margin.bottom,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            pointerEvents: "none",
-            marginLeft: margin.left,
-            marginTop: margin.top,
-          }}
-        >
-          <Tooltip interactData={interactData} />
-        </div> */}
-
-        {/* TOOLTIP 2 */}
-        <g className="circles">
-          {data.map((d, i) => (
+        {/* VORONOI */}
+        <g className="voronoi">
+          { data.map((d, i) => (
             <path
               key={i}
               d={voronoi.renderCell(i)}
-              stroke="grey"
+              // stroke="grey"
               fill="transparent"
               opacity={0.1}
-              onMouseOver={() => {
-                setHoveredItem(i);
-              }}
+              onMouseOver={() => handleMouseOver(data[i])}
+              onMouseOut={handleMouseOut}
             />
           ))}
         </g>
+        {/* TOOLTIP */}
+        { interactData && 
+          <g>
+            <rect
+              width={200}
+              height={60}
+              x={interactData.xPos - 10}
+              y={interactData.yPos + 10}
+              stroke="#cccccc"
+              strokeWidth="1"
+              fill="#ffffff"
+            ></rect>
+            <g>
+              <text
+                textAnchor="start"
+                x={interactData.xPos}
+                y={interactData.yPos + 35}
+                fontSize={16}
+              >
+                {interactData.name}
+              </text>
+            </g>
+          </g>
+        }
       </svg>
     </div>
   )

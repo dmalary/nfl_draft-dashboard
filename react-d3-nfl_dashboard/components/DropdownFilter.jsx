@@ -6,13 +6,9 @@ const DropdownFilter = ({ filterKey, data, handleFilterUpdate }) => {
   const [filter, setFilter] = useState('');
 
   const handleChangeFilter = (e) => {
-    // console.log(e.target.value);
     setFilter(e.target.value);
     handleFilterUpdate(filterKey, e.target.value);
   }
-
-  // console.log('filterKey', filterKey)
-  // console.log('data', data)
 
   return (
     <div className='rounded-2xl text-left'>

@@ -43,7 +43,6 @@ const App = () => {
         </div>
       </div>
       <div className='hidden sm:block p-2 col-span-2'>
-        {/* <ScatterChart width={800} height={600} data={scatterData}/> */}
         <ScatterChart width={850} height={550} data={workingData} />
       </div>
     </div>

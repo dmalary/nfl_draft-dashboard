@@ -74,7 +74,12 @@ const ScatterChart = ({ width, height, data }) => {
       xPos: xScale(d.year),
       yPos: yScale(d.pick),
       name: d.playerName,
+      position: d.position,
       team: d.team,
+      college: d.college,
+      year: d.year,
+      round: d.round,
+      pick: d.pick,
     })
   }
 
@@ -159,31 +164,23 @@ const ScatterChart = ({ width, height, data }) => {
             />
           ))}
         </g>
-        {/* TOOLTIP */}
-        { interactData && 
-          <g className="tooltip">
-            <rect
-              width={200}
-              height={60}
-              x={interactData.xPos - 10}
-              y={interactData.yPos + 10}
-              stroke="#cccccc"
-              strokeWidth="1"
-              fill="#ffffff"
-            ></rect>
-            <g>
-              <text
-                textAnchor="start"
-                x={interactData.xPos}
-                y={interactData.yPos + 35}
-                fontSize={16}
-              >
-                {interactData.name}
-              </text>
-            </g>
-          </g>
-        }
       </svg>
+      {/* TOOLTIP */}
+      { interactData && 
+        <div
+          className="tooltip"
+          style={{
+            left: interactData.xPos + 350, // Adjust as needed
+            top: interactData.yPos + 80, // Adjust as needed
+            width: 220, // Set the width
+            height: 75, // Set the height
+            pointerEvents: "none", // To prevent the tooltip from blocking mouse events
+          }}
+        >
+          <p>{interactData.position} <b>{interactData.name}</b> ({interactData.college})</p>
+          <p><i>{interactData.year} pick: {interactData.pick} (round {interactData.round})</i></p>
+        </div>
+      }
     </div>
   )
 }

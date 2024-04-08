@@ -62,3 +62,20 @@ button:focus-visible {
 .main-card {
   background-color: #383838;
 }
+
+.tooltip {
+  position: absolute;
+  background: #efefef;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+  margin-left: 15px;
+  transform: translateY(-50%);
+}
+
+.tooltip p {
+  color: #000;
+  text-align: left;
+}

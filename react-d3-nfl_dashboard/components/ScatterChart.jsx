@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import * as d3 from 'd3';
 import { Delaunay } from "d3";
 
-// import Tooltip from "../components/Tooltip";
+import Tooltip from "../components/Tooltip";
 // import ChartLegend from '../components/ChartLegend';
 
 const margin = {
@@ -167,19 +167,7 @@ const ScatterChart = ({ width, height, data }) => {
       </svg>
       {/* TOOLTIP */}
       { interactData && 
-        <div
-          className="tooltip"
-          style={{
-            left: interactData.xPos + 350, // Adjust as needed
-            top: interactData.yPos + 80, // Adjust as needed
-            width: 220, // Set the width
-            height: 75, // Set the height
-            pointerEvents: "none", // To prevent the tooltip from blocking mouse events
-          }}
-        >
-          <p>{interactData.position} <b>{interactData.name}</b> ({interactData.college})</p>
-          <p><i>{interactData.year} pick: {interactData.pick} (round {interactData.round})</i></p>
-        </div>
+        <Tooltip interactData={interactData}/>
       }
     </div>
   )

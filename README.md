@@ -16,7 +16,7 @@ deploy: npm run deploy
 - styling & responsiveneness & copy
 
 ### article callouts
-article order: scrape/clean, chart (+voronoi), deploy
+article order: scrape/clean, chart (+voronoi), deploy. From scrape to dashboard, a look at the NFL draft.
 - balance btw d3 + react
 - color scale
 - filter logic
@@ -37,6 +37,8 @@ article order: scrape/clean, chart (+voronoi), deploy
 - deploy:
   - https://blog.logrocket.com/deploying-react-apps-github-pages/
   - https://dev.to/rashidshamloo/deploying-vite-react-app-to-github-pages-35hf
+- inspo:
+  - https://sqldusty.com/2019/04/26/visualizing-nfl-draft-history-with-power-bi/
 
 
 ### conventions

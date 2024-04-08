@@ -63,7 +63,7 @@ const ScatterChart = ({ width, height, data }) => {
   const delaunay = useMemo(() => {
     const formattedData = data.map((d) => [xScale(d.year), yScale(d.pick)]);
     return Delaunay.from(formattedData);
-  }, [data]);
+  }, [data, xScale, yScale]);
 
   const voronoi = useMemo(() => {
     return delaunay.voronoi([0, 0, width, height]);

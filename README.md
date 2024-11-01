@@ -7,10 +7,10 @@ Display [NFL data](http://https://www.pro-football-reference.com/) onto a mini d
 App link: [Draft dashboard](https://dmalary.github.io/nfl_draft-dashboard/)
 
 ### commands
-instll: npm i
-run: npm run dev
-build: npm run build
-deploy: npm run deploy
+- install: npm i
+- run: npm run dev
+- build: npm run build
+- deploy: npm run deploy
 
 ### next: 
 - styling & responsiveneness & copy
